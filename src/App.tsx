@@ -21,7 +21,6 @@ export const App: React.FC = () => {
   const totalItems = 42;
   const totalPages = Math.ceil(totalItems / itemsPerPage);
 
-
   return (
     <div className="container">
       <h1>Items with Pagination</h1>
@@ -40,17 +39,16 @@ export const App: React.FC = () => {
             data-cy="perPageSelector"
             id="perPageSelector"
             className="form-control"
+            defaultValue={ItemsPerPage.Five}
             onChange={e => {
               setItemsPerPage(Number(e.target.value));
               setCurrentPage(1);
             }}
           >
-            <option value="3">3</option>
-            <option value="5" selected>
-              5
-            </option>
-            <option value="10">10</option>
-            <option value="20">20</option>
+            <option value="3">{ItemsPerPage.Three}</option>
+            <option value="5">{ItemsPerPage.Five}</option>
+            <option value="10">{ItemsPerPage.Ten}</option>
+            <option value="20">{ItemsPerPage.Twenty}</option>
           </select>
         </div>
 
