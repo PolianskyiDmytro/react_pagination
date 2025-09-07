@@ -20,7 +20,7 @@ export const App: React.FC = () => {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const totalItems = 42;
   const totalPages = Math.ceil(totalItems / itemsPerPage);
-  const pagesArray = getNumbers(1, totalPages);
+
 
   return (
     <div className="container">
@@ -59,13 +59,23 @@ export const App: React.FC = () => {
         </label>
       </div>
       <Pagination
-        itemsPerPage={itemsPerPage}
+        total={totalItems}
+        perPage={itemsPerPage}
         currentPage={currentPage}
-        setCurrentPage={setCurrentPage}
-        totalPages={totalPages}
-        pagesArray={pagesArray}
-        items={items}
+        onPageChange={(page: number) => setCurrentPage(page)}
       />
+      <ul>
+        {items
+          .slice(
+            (currentPage - 1) * itemsPerPage,
+            (currentPage - 1) * itemsPerPage + itemsPerPage,
+          )
+          .map((item: string) => (
+            <li data-cy="item" key={item}>
+              {item}
+            </li>
+          ))}
+      </ul>
     </div>
   );
 };
